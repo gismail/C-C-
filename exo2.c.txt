@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<pthread.h>
+
+void thread1(void *args) {
+   fprintf(stdout,"%s\n", (char *) args) ;
+   pthread_exit( (void *) "Je suis A et j'ai fini\n");
+
+}
+void* thread2(void *args) {
+   fprintf(stderr,"%s\n", (char *) args) ;
+   return (void *) "Je suis B et j'ai fini\n" ;
+  
+}
+int main() {
+    void *messageRenvoyer ;
+pthread_t num_thread1,num_thread2;
+    char mess1[]="mess1";
+    char mess2[]="mess2";
+
+if (pthread_create(&num_thread1, NULL, (void *(*)())thread1, mess1) == -1)
+    perror ("pb pthread_create\n");
+if (pthread_create(&num_thread2, NULL, (void *(*)())thread2, mess2) == -1)
+    perror ("pb pthread_create\n");
+
+
+pthread_join(num_thread1,&messageRenvoyer);
+fprintf(stdout,"%s",(char *) messageRenvoyer) ;
+pthread_join(num_thread2, &messageRenvoyer);
+fprintf(stderr,"%s",(char *) messageRenvoyer) ;
+    return 0;
+}

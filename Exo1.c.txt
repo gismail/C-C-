@@ -1,0 +1,5 @@
+les resultats obtenus sont imprédictible, c'est logic parce que le moment où on a créé le Thread num_thread,
+on obtient 2 threads qui essayent de s'occuper le processeur, il y a ce qu'on appelle la concurrence entre les threads (qui va s'occuper le processeur en premier).
+Là, on voit que le processeur bascule entre les deux thread (num_thread et main(thread principal)).
+Une fois pour num_thread et autre pour main mais, toujours imprédictible .
+Avec d'autre execution , on aura d'autre resultat. 
